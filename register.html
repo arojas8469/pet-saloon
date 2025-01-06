@@ -16,8 +16,9 @@
     </nav>
     </header>   
     <main>
-        <div id="petsInfo">
+        <div id="salonInfo">
         </div>
+        <form onsubmit="registerPet(); return false;" class="register-form">
         <div class="register-form">
             <h2>Register a new pet</h2>
             <div class="input-control">
@@ -46,10 +47,11 @@
                 </select>
             </div>
             <div class="btn-container">
-                <button onclick="register()" class="btn-register">Register</button>
+                <button onclick="registerPet()" class="btn-register">Register</button>
             </div>
         </div>
+        </form>
     </main>
-    <script src=".apps.js"></script>  
+    <script src=".register.js"></script>  
 </body>
 </html>

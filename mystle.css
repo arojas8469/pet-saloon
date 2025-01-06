@@ -1,0 +1,67 @@
+/*global*/
+html,body{
+    margin:0;
+    padding:0;
+}
+body{
+    font-family:arial;
+}
+
+/*headers*/
+header{
+    background-color: rgb(2,81, 98);
+    color: white;
+    height: 20vh;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color: white;
+    margin-right: 2rem;
+}
+
+h2{
+    text-align: center;
+    margin: 1rem 0;
+}
+/*register from*/
+.register-form{
+    background-color: grey;
+    width: 50%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 5px;
+}
+.input-control{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+    align-items: center;
+}
+.input-control input{
+    width: 80%;
+    padding: 3px;
+    border: none;
+}
+.input-control select{
+    width: 80%;
+    padding: 3px;
+    border: none;
+}
+.input-control label{
+    display: block;
+    width: 20%;
+    text-align: right;
+    margin-right: 10px;
+}
+.btn-container{
+    display: flex;
+    justify-content: flex-end;
+    margin:0 1rem;
+}
+.btn-register{
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+}
