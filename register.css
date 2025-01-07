@@ -44,6 +44,12 @@ main {
     justify-content: center;
     padding: 2rem;
 }
+form{
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
 
 /* H2 Styling with Block */
 h2 {
@@ -55,7 +61,10 @@ h2 {
     width: 80%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+h3{
+    text-align: center;
+    
+}
 /* Form styling */
 .register-form {
     background-color: white;
