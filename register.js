@@ -1,60 +1,82 @@
 const salon = {
-    name: "The Fashion Pet",
+    name: 'The Fashion Pet',
     address: {
-        street: "Palm Ave",
-        zip: "22333"
+        street: '123 Main St',
+        city: 'San Diego',
+        state: 'CA'
     },
-    phone: "666-555-7777",
+    phone: '123-456-7890',
     pets: []
 };
 
-function Pet(name, age, gender, breed, service, type) {
-    this.name = name;
-    this.age = age;
-    this.gender = gender;
-    this.breed = breed;
-    this.service = service;
-    this.type = type;
+class Pet {
+    constructor(name, age, gender, breed, service, type, color, paymentMethod) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.breed = breed;
+        this.service = service;
+        this.type = type;
+        this.color = color;
+        this.paymentMethod = paymentMethod;
+    }
 }
 
 function registerPet() {
-    const name = document.getElementById("txtName").value;
-    const age = document.getElementById("txtAge").value;
-    const gender = document.getElementById("txtGender").value;
-    const breed = document.getElementById("txtBreed").value;
-    const service = document.getElementById("txtService").value;
-    const type = document.getElementById("txtType").value;
+    const name = document.getElementById('petName').value;
+    const age = document.getElementById('petAge').value;
+    const gender = document.getElementById('petGender').value;
+    const breed = document.getElementById('petBreed').value;
+    const service = document.getElementById('petService').value;
+    const type = document.getElementById('petType').value;
+    const color = document.getElementById('petColor').value;
+    const paymentMethod = document.getElementById('petPaymentMethod').value;
 
-    const newPet = new Pet(name, age, gender, breed, service, type);
-    salon.pets.push(newPet);
-
-    alert(`${name} has been registered!`);
-    document.querySelector("form").reset();
-    displayRow();
+    if (name && age && gender && breed && service && type && color && paymentMethod) {
+        const newPet = new Pet(name, age, gender, breed, service, type, color, paymentMethod);
+        salon.pets.push(newPet);
+        displayRow();
+        clearForm();
+    } else {
+        alert('Please fill all fields.');
+    }
 }
 
 function displayRow() {
-    const tableBody = document.getElementById("petTableBody");
-    const row = document.createElement("tr");
-    row.innerHTML = `
-    <td>${pet.name}</td>
-    <td>${pet.age}</td>
-    <td>${pet.gender}</td>
-    <td>${pet.services}</td>
-    <td><button class="btn btn-danger" onclick=deletePet(this)">Delete</button>`;
-    tableBody.appendChild(row);
+    const petsTable = document.getElementById('petsTable');
+    petsTable.innerHTML = '';
+    salon.pets.forEach((pet, index) => {
+        const row = `<tr>
+            <td>${pet.name}</td>
+            <td>${pet.age}</td>
+            <td>${pet.gender}</td>
+            <td>${pet.breed}</td>
+            <td>${pet.service}</td>
+            <td>${pet.type}</td>
+            <td>${pet.color}</td>
+            <td>${pet.paymentMethod}</td>
+            <td><button onclick="deletePet(${index})" class="btn btn-danger">Delete</button></td>
+        </tr>`;
+        petsTable.innerHTML += row;
+    });
 }
-function deletePet(button) {
-    const row = button.parentElement.parentElement;
-    row.remove();
+
+function deletePet(index) {
+    salon.pets.splice(index, 1);
+    displayRow();
 }
 
-document.getElementById("salonInfo").innerHTML = `${salon.name}, located at ${salon.address.street}, Zip: ${salon.address.zip}. Call us: ${salon.phone}`;
+function clearForm() {
+    document.getElementById('petName').value = '';
+    document.getElementById('petAge').value = '';
+    document.getElementById('petGender').value = '';
+    document.getElementById('petBreed').value = '';
+    document.getElementById('petService').value = '';
+    document.getElementById('petType').value = '';
+    document.getElementById('petColor').value = '';
+    document.getElementById('petPaymentMethod').value = '';
+}
 
-const pet1 = new Pet("Scooby", 60, "Male", "Great Dane", "Grooming", "Dog");
-const pet2 = new Pet("Scrappy", 50, "Male", "Mixed", "Vaccines", "Dog");
-const pet3 = new Pet("Tweety", 70, "Female", "Canary", "Nails", "Bird");
-
-salon.pets.push(pet1, pet2, pet3);
-
-displayRow();
+window.onload = () => {
+    displayRow();
+};
